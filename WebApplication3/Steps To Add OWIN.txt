@@ -1,0 +1,19 @@
+﻿1. Create MVC empty project, when prompted select to add core reference for web api. Authentication to remain as No Authentication
+2. Install package MS AspNet WebApi Owin
+3. Install package MS Owin Host SystemWeb
+4. Create startup class, make sure assembly attribute is applied for Owin Startup
+5. Delete global.asax
+6. Install Package MS AspNet Identity Owin
+7. Install package MS AspNet Identity EntityFramework
+8. Add Authentication Context
+9. Add model class
+10. Add connection string
+11. Add repository
+12. Add account controller
+13. Install package MS Owin Security OAuth
+14. Install package MS Owin Cors
+
+To Use SQL CE 
+1. Add connection string <add name="AuthContext" providerName="System.Data.SqlServerCe.4.0" connectionString="Data Source=|DataDirectory|Database1.sdf" />
+2. Install Package EntityFramework.SqlServerCompact
+
