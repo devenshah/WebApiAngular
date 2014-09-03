@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web.Http;
 using Newtonsoft.Json.Serialization;
+using WebApplication3.Filters;
 
 namespace WebApplication3
 {
@@ -13,6 +14,7 @@ namespace WebApplication3
         {
             // Web API configuration and services
             config.Filters.Add(new AuthorizeAttribute());
+            config.Filters.Add(new RequireHttpsAttribute());
 
             // Web API routes
             config.MapHttpAttributeRoutes();
