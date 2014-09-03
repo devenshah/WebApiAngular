@@ -155,6 +155,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="AuthContext.cs" />
+    <Compile Include="AuthDbInitializer.cs" />
     <Compile Include="AuthRepository.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />

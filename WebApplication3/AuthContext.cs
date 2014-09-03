@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+
 
 namespace WebApplication3
 {
@@ -11,7 +8,7 @@ namespace WebApplication3
         public AuthContext()
             : base("AuthContext")
         {
-
+            System.Data.Entity.Database.SetInitializer<AuthContext>(new AuthDbInitializer());
         }
     }
 }
