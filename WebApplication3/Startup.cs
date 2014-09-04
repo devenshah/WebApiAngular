@@ -6,7 +6,6 @@ using System.Web.Http;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
-using WebApplication3.Providers;
 
 [assembly: OwinStartup(typeof(WebApplication3.Startup))]
 
