@@ -22,7 +22,7 @@ app.config(function ($routeProvider) {
         templateUrl: "/app/views/orders.html"
     });
 
-    $routeProvider.otherwise({ redirectTo: "/home" });
+    $routeProvider.otherwise({ redirectTo: "/login" });
 });
 
 var serviceBase = 'http://localhost:50238/';

@@ -1,7 +1,7 @@
 ﻿'use strict';
 app.factory('authService', ['$http', '$q', 'localStorageService', function ($http, $q, localStorageService) {
 
-    var serviceBase = 'http://localhost:50238/';
+    var serviceBase = 'https://localhost:44300/';
     var authServiceFactory = {};
 
     var _authentication = {
@@ -21,24 +21,19 @@ app.factory('authService', ['$http', '$q', 'localStorageService', function ($htt
 
     var _login = function (loginData) {
 
-        var data = "grant_type=password&username=" + loginData.userName + "&password=" + loginData.password;
-
         var deferred = $q.defer();
 
-        $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
+        return $http.post(serviceBase + 'api/account/login', loginData)
+            .then(function (response) {
 
-            localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName });
+                localStorageService.set('authorizationData', { token: response.data.accessToken, userName: loginData.userName });
 
-            _authentication.isAuth = true;
-            _authentication.userName = loginData.userName;
+                _authentication.isAuth = true;
+                _authentication.userName = loginData.userName;
 
-            deferred.resolve(response);
+                deferred.resolve(response);
 
-        }).error(function (err, status) {
-            _logOut();
-            deferred.reject(err);
-        });
-
+            });
         return deferred.promise;
 
     };

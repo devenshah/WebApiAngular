@@ -14,6 +14,9 @@ namespace WebApplication3
 {
     public class Startup
     {
+        // used when a user successfully authenticates
+        public static OAuthAuthorizationServerOptions OAuthServerOptions { get; private set; }
+        
 
         public void Configuration(IAppBuilder app)
         {
@@ -26,18 +29,19 @@ namespace WebApplication3
 
         public void ConfigureOAuth(IAppBuilder app)
         {
-            //app.UseExternalSignInCookie(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ExternalCookie);
-            OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
+            app.UseExternalSignInCookie(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ExternalCookie);
+            
+            var OAuthBearerOptions = new OAuthBearerAuthenticationOptions();
+            OAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
-                AllowInsecureHttp = true,
-                TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(20),
-                Provider = new SimpleAuthorizationServerProvider()
+                AllowInsecureHttp = false,
+                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(20)
+                //Provider = new SimpleAuthorizationServerProvider()
             };
 
             // Token Generation
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
-            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+            app.UseOAuthBearerAuthentication(OAuthBearerOptions);
 
         }
     }
