@@ -24,15 +24,19 @@ app.factory('authService', ['$http', '$q', 'localStorageService', function ($htt
         var deferred = $q.defer();
 
         return $http.post(serviceBase + 'api/account/login', loginData)
-            .then(function (response) {
+            .success(function (response) {
 
-                localStorageService.set('authorizationData', { token: response.data.accessToken, userName: loginData.userName });
+                localStorageService.set('authorizationData', { token: response.accessToken, userName: loginData.userName });
 
                 _authentication.isAuth = true;
                 _authentication.userName = loginData.userName;
 
                 deferred.resolve(response);
 
+            })
+            .error(function (err) {
+                 _logOut();
+                deferred.reject(err);
             });
         return deferred.promise;
 

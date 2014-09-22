@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('loginController', ['$scope', '$location', 'authService', function ($scope, $location, authService) {
+app.controller('loginController', ['$scope', '$location', 'authService', 'toaster', function ($scope, $location, authService, toaster) {
 
     $scope.loginData = {
         userName: "",
@@ -17,7 +17,9 @@ app.controller('loginController', ['$scope', '$location', 'authService', functio
 
         },
          function (err) {
-             $scope.message = err.error_description;
+             $scope.message = err.data.message;
+             toaster.pop('error', 'Login error', 'Invalid username or password');
+
          });
     };
 

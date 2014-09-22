@@ -12,6 +12,11 @@ namespace WebApplication3
     {
         public static void Register(HttpConfiguration config)
         {
+
+            //TODO
+            //config.SuppressDefaultHostAuthentication();
+            //config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+
             // Web API configuration and services
             config.Filters.Add(new AuthorizeAttribute());
             config.Filters.Add(new RequireHttpsAttribute());

@@ -5,7 +5,7 @@
 5. Delete global.asax
 6. Install Package MS AspNet Identity Owin
 7. Install package MS AspNet Identity EntityFramework
-8. Add Authentication Context
+8. Add Authentication DB Context
 9. Add model class
 10. Add connection string
 11. Add repository
@@ -13,7 +13,14 @@
 13. Install package MS Owin Security OAuth
 14. Install package MS Owin Cors
 
-To Use SQL CE 
+To Use SQL CE: 
 1. Add connection string <add name="AuthContext" providerName="System.Data.SqlServerCe.4.0" connectionString="Data Source=|DataDirectory|Database1.sdf" />
 2. Install Package EntityFramework.SqlServerCompact
+
+To Turn on SSL:
+1. In project properties (F4) set SSL Enabled = true
+2. Copy the SSL URL from project properties (F4). 
+3. Right click on project and select Properties from menu. 
+4. Goto Web tab and paste the URL in project url field. 
+5. Add filter RequireHttpsAttribute to only allow https request
 
