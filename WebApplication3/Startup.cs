@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
+using WebApplication3.Configuration;
 
 [assembly: OwinStartup(typeof(WebApplication3.Startup))]
 
@@ -19,9 +16,8 @@ namespace WebApplication3
 
         public void Configuration(IAppBuilder app)
         {
-            var config = new HttpConfiguration();
             ConfigureOAuth(app);
-            WebApiConfig.Register(config);
+            var config = new CustomHttpConfiguration();
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(config);
         }
