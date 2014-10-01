@@ -3,21 +3,46 @@
 3. Install package MS Owin Host SystemWeb
 4. Create startup class, make sure assembly attribute is applied for Owin Startup
 5. Delete global.asax
-6. Install Package MS AspNet Identity Owin
-7. Install package MS AspNet Identity EntityFramework
-8. Add Authentication DB Context
-9. Add model class
-10. Add connection string
-11. Add repository
-12. Add account controller
-13. Install package MS Owin Security OAuth
-14. Install package MS Owin Cors
+
+
 
 To Use SQL CE: 
+======================
+In Data Project
+1. Install Package EntityFramework.SqlServerCompact
+2. Install package MS AspNet Identity EntityFramework
+4. Create User model
+5. Add Authentication DB Context
+6. Create DB Initializer for Authentication
+
+In Web Project
 1. Add connection string <add name="AuthContext" providerName="System.Data.SqlServerCe.4.0" connectionString="Data Source=|DataDirectory|Database1.sdf" />
-2. Install Package EntityFramework.SqlServerCompact
+1.1. Add Entity Framework provider for SQL Ce
+2. Install Package MS AspNet Identity Owin
+3. Install package MS Owin Security OAuth
+4. Install package MS Owin Cors
+5. Config owin startup class NOTE: UseWebApi should be used after configuring OAuth
+
+11. Add repository
+12. Add account controller
+
+TEST API:
+=====================
+For Login POST with following 
+{
+'username':'admin',
+'password':'0liswe11'
+}
+This will return you an access token
+
+For other request add following Header replacing <access token> with actual token
+Authorization: Bearer <access token>
+
+
+
 
 To Turn on SSL:
+=====================
 1. In project properties (F4) set SSL Enabled = true
 2. Copy the SSL URL from project properties (F4). 
 3. Right click on project and select Properties from menu. 
